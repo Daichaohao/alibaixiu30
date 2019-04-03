@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+</head>
+<body>
+        <form id="dl"> 
+                用户名：<input type="text" name="username" id="username"> <br><br>
+                电邮：<input type="email" name="email" id="email"> <br><br>
+                网址：<input type="url" name="url" id="url"> <br><br>         
+                评论： <textarea name="表单域" id="text" ></textarea> <br><br>   
+                 <input name="sex" type="radio" id ="man" >男    
+                 <input name="sex" type="radio" id ='man'>女
+                 <input type="button" value="提交" id="btn"> 
+                </form>
+    
+
+</body>
+</html>
+<script src="./jquery-1.12.4.min.js"></script>
+<script>
+$('#btn').click(function(e){
+    e.preventDefault();
+    var fm=new FormData($('form')[0]);
+    $.post({
+        url:"http://localhost/submit.php",
+        data:fm,
+        contentType:false,
+        processData:false,
+        dataType:"json",
+        success:function(obj){
+            if(flag=="1"){
+                location="http://localhost/success";
+            }else{
+                location="http://localhost/failure";
+            }
+        }
+        
+        
+    })
+
+})
+</script>
